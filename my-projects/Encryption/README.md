@@ -1,3 +1,3 @@
 nothing
 ***
-![image](images/encryptionapplication.jpg)
+![image](my-projects/images/encryptionapplication.jpg)
