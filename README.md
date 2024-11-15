@@ -1,6 +1,6 @@
 <table style="border: 1px solid black; width: 100%; text-align: left;">
   <thead>
-    <tr style="background-color:red">
+    <tr style="background-color:red;">
       <th style="border-bottom: 1px solid black; padding: 8px;">Header 1</th>
       <th style="border-bottom: 1px solid black; padding: 8px;">Header 2</th>
       <th style="border-bottom: 1px solid black; padding: 8px;">Header 3</th>
