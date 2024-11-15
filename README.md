@@ -1,4 +1,4 @@
-<table style="border: 1px solid black; border-radius: 10px; padding: 5px; width: 100%; text-align: left; overflow: hidden;">
+<table style="border: 1px solid black; width: 100%; text-align: left;">
   <thead>
     <tr>
       <th style="border-bottom: 1px solid black; padding: 8px;">Header 1</th>
