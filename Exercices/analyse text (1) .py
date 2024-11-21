@@ -1,3 +1,13 @@
+# Créer une fonction qui analyse un texte donné.
+# • Question : Écrivez une fonction analyze_text(text) qui prend en paramètre une
+# chaîne de caractères text. La fonction doit retourner un dictionnaire contenant :
+# • Le nombre total de mots dans le texte.
+# • Le nombre total de mots dans le texte qui repete ,
+# • Le nombre de mots uniques et des lettres uniques. 
+# .use easy methode
+
+
+
 def analyze_text(text):
     text = text.lower()
     
