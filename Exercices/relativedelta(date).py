@@ -33,17 +33,17 @@ def convertseconds(x):
     seconds=(x%60)
     return 'heures : ',heures,'\nminutes : ',minutes,'\nseconds : ',seconds 
 
-# try: 
-a=input("type a date ('Y-M-d') : ").strip()
-b=input("date add : ").strip()
-annnees,mois,jours=map(int,b.split(','))
-if len(b.split(',')) != 3:
-    raise ValueError("Please provide exactly 3 values for years, months, and days.")
-print('date add ---> ',dateAdd(a,{"annees":annnees,"mois":mois,"jours":jours}))
-print('date sub ---> ',datesub(a,{"annees":annnees,"mois":mois,"jours":jours}) )
+try: 
+    a=input("type a date ('Y-M-d') : ").strip()
+    b=input("date add : ").strip()
+    annnees,mois,jours=map(int,b.split(','))
+    if len(b.split(',')) != 3:
+        raise ValueError("Please provide exactly 3 values for years, months, and days.")
+    print('date add ---> ',dateAdd(a,{"annees":annnees,"mois":mois,"jours":jours}))
+    print('date sub ---> ',datesub(a,{"annees":annnees,"mois":mois,"jours":jours}) )
+    
+    n=int(input('enter number of secondes : ').strip())
+    print(convertseconds(n))
 
-n=int(input('enter number of secondes : ').strip())
-print(convertseconds(n))
-
-# except ValueError as a : print(f'error !,please enter a number and date not {a}')
+except ValueError as a : print(f'error !,please enter a number and date not {a}')
 
