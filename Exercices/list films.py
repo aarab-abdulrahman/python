@@ -117,12 +117,12 @@ def sauvegarder_csv(films,fichier):
    colones=['titre','genre','annee sortie','recettes mondials','note moyenne','categorie']
    try:
       with open(fichier,mode="w",newline='',encoding='utf-8') as csvfile:
-         writer=csv.DicWriter(csvfile,filednames=colones)
+         writer=csv.DictWriter(csvfile,fieldnames=colones)
          writer.writeheader()
 
          for one_film in films:
             film_filter={col:one_film[col] for col in colones if col in one_film}
-            writer.writerow(films)
+            writer.writerow(film_filter)
 
       print(f"all films are sauvegarde in file : {fichier}")
    except ValueError as e:
