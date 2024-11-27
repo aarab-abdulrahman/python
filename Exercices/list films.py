@@ -1,3 +1,4 @@
+import csv
 from datetime import datetime
 list_films=[]
 def verification_titre(list_films,title):
@@ -111,6 +112,22 @@ def dec_inc_reasing(x):
          elif b=="2":
             sorted__(list_films,x) 
 
+# sauvegarder dans un fichier CSV
+def sauvegarder_csv(films,fichier):
+   colones=['titre','genre','annee sortie','recettes mondials','note moyenne','categorie']
+   try:
+      with open(fichier,mode="w",newline='',encoding='utf-8') as csvfile:
+         writer=csv.DicWriter(csvfile,filednames=colones)
+         writer.writeheader()
+
+         for one_film in films:
+            film_filter={col:one_film[col] for col in colones if col in one_film}
+            writer.writerow(films)
+
+      print(f"all films are sauvegarde in file : {fichier}")
+   except ValueError as e:
+      print(f"error lors de l'enregistrement : {e}")
+
 # menu
 while True:
    x=input("""
@@ -119,7 +136,8 @@ while True:
     3 --> calcul le recettes moyennes
     4 --> compter les filmes par genre
     5 --> enricher les donnees des films
-    7---> filtrer les filmes selon un critere
+    6---> filtrer les filmes selon un critere
+    7---> sauvegarder dans un ficher CSV
     8 --> break
 ----> """)
    if x=="1": 
@@ -134,7 +152,7 @@ while True:
    elif x=="5":
       enricher_donnees_films(list_films)
    
-   elif x=="7":
+   elif x=="6":
       chose=input("select one item from this list ('titre' or 'genre' or 'annee sortie' or 'recettes mondiales' or 'note moyenne') : ").strip().lower()
 
       # chose 1
@@ -172,6 +190,8 @@ while True:
       elif chose=="note moyenne" or "note" in chose.split(' '):
          dec_inc_reasing('note moyenne')
 
-
+   elif x=="7":
+           name_=input('type the file name you want : ').strip()
+           sauvegarder_csv(list_films,f"{name_}.csv")
    elif x=="8":
       break
