@@ -27,12 +27,12 @@ while True :
         c=input("type your preferred language : ").strip()
         accounts.append(account(a,b,c))
     elif x=="2":
-        tree=Tree("Accounts")
+        tree=Tree("[yellow]Accounts[/yellow]")
         for index , obj in enumerate(accounts,start=1):
-            account_tree=tree.add(f"[underline]Account {index} : [/underline]")
-            account_tree.add("full name : {obj.name}")
-            account_tree.add("email : {obj.email}")
-            account_tree.add("preferred language : {obj.language}")
+            account_tree=tree.add(f"[underline]Account [red]{index}[/red] :[/underline]")
+            account_tree.add(f"[green]full name[/green] : {obj.name}")
+            account_tree.add(f"[green]email[/green] : {obj.email}")
+            account_tree.add(f"[green]preferred language[/green] : {obj.language}")
         console.print(tree)
 
     elif x=="3":
