@@ -2,7 +2,7 @@
 ### code 1 with python:
 
 
-```bash
+```python
 print("hello")
  ```
 ### code 2 with htmk:
