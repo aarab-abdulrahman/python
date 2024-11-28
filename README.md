@@ -3,9 +3,9 @@
 ```python
 pip install rich
  ```
-### code 2 with htmk:
+### PIL / Pillow:
 
-```html
-<h1>hello</h1>
+```python
+pip install pillow
 ```
 
