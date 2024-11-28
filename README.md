@@ -8,7 +8,8 @@
   <tbody>
     <tr>
       <td style="padding: 8px;">Rich</td>
-      <td style="padding: 8px;"><code>pip install rich</code></td>
+      <td style="padding: 8px;">```bash
+...></td>
     </tr>
     <tr>
       <td style="padding: 8px;">Row 2, Cell 1</td>
