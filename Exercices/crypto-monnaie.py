@@ -50,7 +50,7 @@ def input_crypto(list_):
                             'volume':float(volume)
                         })
                          
-                        Console().print('[green]succesfully ![/green]')
+                        Console().print('[bold][green]Saved Successfully ![/green][/bold]')
                     else:
                         print("enter a correct number")
                 else: 
@@ -73,14 +73,14 @@ def skipped_design():
 def edit_list(x):
     change=0
     global list_crypto
-    Console().print("[yellow]type 'enter' to skip or '0'[/yellow]\n")
+    Console().print("[yellow]type 'enter' or '0' to skip [/yellow]\n")
 
 
     name=input("name ---> ").strip().capitalize()
     if name=="0" or name=="":
         skipped_design()
     elif verification_name(name)  :
-        list_crypto[x-1]['name']=name
+        list_crypto[x]['name']=name
         change+=1
     else: 
         print("the name already exists !") 
@@ -91,7 +91,7 @@ def edit_list(x):
     if symbole=="0" or symbole=="":
         skipped_design()
     elif verification_symbole(symbole)  :  
-        list_crypto[x-1]['symbole']=symbole
+        list_crypto[x]['symbole']=symbole
         change+=1
     else:
         Console().print("this input -> [red]{}[/red] is contient symbols exemple ('-','#','~')".format(symbole))
@@ -101,7 +101,7 @@ def edit_list(x):
     if price=="0" or price=="":
         skipped_design()
     elif verification_digits(price) :
-        list_crypto[x-1]['price']=price
+        list_crypto[x]['price']=price
         change+=1
     else:
         print("enter a correct number")
@@ -111,7 +111,7 @@ def edit_list(x):
     if market_cap=="0" or market_cap=="":
         skipped_design()
     elif verification_digits(market_cap) :
-        list_crypto[x-1]['market cap']=market_cap
+        list_crypto[x]['market cap']=market_cap
         change+=1
     else: 
         print("enter a correct number")
@@ -119,17 +119,20 @@ def edit_list(x):
 
     volume=input("type volume : ").strip()
     if volume=="0" or volume=="":
-        skipped_design
+        skipped_design()
     elif verification_digits(volume) :
-        list_crypto[x-1]['volume']=volume
+        list_crypto[x]['volume']=volume
         change+=1
     else:
         print("enter a correct number")
 
     if change>=1:
-     Console().print('[green]succesfully ![/green]')
+     if change==1:
+      Console().print('[green]One change was successfully registered ✅[/green]')
+     else:
+      Console().print(f'[green]{change} change were successfully registered ✅[/green]')
     else:
-      Console().print("[red]no change[/red]")
+      Console().print("[bold][red]There are no change[/red][/bold] !")
     
 
 
@@ -137,14 +140,15 @@ def edit_list(x):
 def show_list(list_cry):
         tree=Tree("\n[yellow]List Crypto[/yellow]")
         for index,obj in enumerate(list_crypto,start=1):
-          tree_sort=tree.add(f"[underline]Crypto no.{index}[/underline]")
+          tree_index=tree.add(f"[underline]Crypto no.{index}[/underline]")
           info = (f"| [blue]Name[/blue] : {obj['name']}"
                  f"\n| [blue]symbole[/blue] : {obj['symbole']}"
                  f"\n| [blue]Price[/blue] : {obj['price']}"
                  f"\n| [blue]Market Cap[/blue] : {obj['market cap']}"
                  f"\n| [blue]Volume[/blue] : {obj['volume']}")
+          
+          tree_index.add(info)
          
-        tree_sort.add(info)
         Console().print(tree)
 
 
@@ -152,6 +156,7 @@ def show_list(list_cry):
 def delete_crypto(x):
     global list_crypto
     del list_crypto[x]
+    Console().print("[green]The list has been deleted .[/green]")
 
 # edit and delete
 def del_dit(chose__,my_function):
