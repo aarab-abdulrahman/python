@@ -119,7 +119,7 @@ def edit_list(x):
 
     volume=input("type volume : ").strip()
     if volume=="0" or volume=="":
-        print("skipeed")
+        skipped_design
     elif verification_digits(volume) :
         list_crypto[x-1]['volume']=volume
         change+=1
@@ -133,6 +133,21 @@ def edit_list(x):
     
 
 
+# show list
+def show_list(list_cry):
+        tree=Tree("\n[yellow]List Crypto[/yellow]")
+        for index,obj in enumerate(list_crypto,start=1):
+          tree_sort=tree.add(f"[underline]Crypto no.{index}[/underline]")
+          info = (f"| [blue]Name[/blue] : {obj['name']}"
+                 f"\n| [blue]symbole[/blue] : {obj['symbole']}"
+                 f"\n| [blue]Price[/blue] : {obj['price']}"
+                 f"\n| [blue]Market Cap[/blue] : {obj['market cap']}"
+                 f"\n| [blue]Volume[/blue] : {obj['volume']}")
+         
+        tree_sort.add(info)
+        Console().print(tree)
+
+
 while True:
  y=input("""
 1---> add crypto (monnaie)
@@ -142,18 +157,7 @@ while True:
  if y=="1":
   input_crypto(list_crypto)
  elif y=="2":
-     tree=Tree("\n[yellow]List Crypto[/yellow]")
-     for index,obj in enumerate(list_crypto,start=1):
-         tree_sort=tree.add(f"[underline]Crypto no.{index}[/underline]")
-         info = (f"| [blue]Name[/blue] : {obj['name']}"
-                 f"\n| [blue]symbole[/blue] : {obj['symbole']}"
-                 f"\n| [blue]Price[/blue] : {obj['price']}"
-                 f"\n| [blue]Market Cap[/blue] : {obj['market cap']}"
-                 f"\n| [blue]Volume[/blue] : {obj['volume']}")
-         
-         tree_sort.add(info)
-
-     Console().print(tree)
+    show_list(list_crypto)
  elif y=="3":
      chose=input("enter the number crypto of liste you want to edit : ").strip()
      if chose.isdigit() and int(chose) in [x for x in range(1,len(list_crypto)+1)]:
