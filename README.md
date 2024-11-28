@@ -8,8 +8,7 @@
   <tbody>
     <tr>
       <td style="padding: 8px;">Rich</td>
-      <td style="padding: 8px;">```bash
-...></td>
+      <td style="padding: 8px;">```bash></td>
     </tr>
     <tr>
       <td style="padding: 8px;">Row 2, Cell 1</td>
