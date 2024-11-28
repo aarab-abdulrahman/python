@@ -1,12 +1,12 @@
 
-### code 1:
+### code 1 with python:
 
-```markdown
+
 ```bash
 abdulrahman
 
 ### code 2:
-
-abdulrahman
-
+```markdown
+```bash
+mohamad
 
