@@ -3,10 +3,11 @@
 
 
 ```bash
-abdulrahman
+print("hello")
+ ```
+### code 2 with htmk:
 
-### code 2:
-```markdown
 ```bash
-mohamad
+<h1>hello</h1>
+```
 
