@@ -7,7 +7,7 @@ print("hello")
  ```
 ### code 2 with htmk:
 
-```bash
+```html
 <h1>hello</h1>
 ```
 
