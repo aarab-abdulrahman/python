@@ -1,9 +1,7 @@
-# Used Libraries :
-### code 1 with python:
-
-
+# Used Libraries 
+### rich:
 ```python
-print("hello")
+pip install rich
  ```
 ### code 2 with htmk:
 
