@@ -148,23 +148,44 @@ def show_list(list_cry):
         Console().print(tree)
 
 
-while True:
- y=input("""
-1---> add crypto (monnaie)
-2---> show list of cryptos
-3---> edit crypto
----> """) 
- if y=="1":
-  input_crypto(list_crypto)
- elif y=="2":
-    show_list(list_crypto)
- elif y=="3":
-     chose=input("enter the number crypto of liste you want to edit : ").strip()
-     if chose.isdigit() and int(chose) in [x for x in range(1,len(list_crypto)+1)]:
-        edit_list(int(chose)-1)
+# delete crypto
+def delete_crypto(x):
+    global list_crypto
+    del list_crypto[x]
+
+# edit and delete
+def del_dit(chose__,my_function):
+     if chose__.isdigit() and int(chose__) in [x for x in range(1,len(list_crypto)+1)]:
+        my_function(int(chose__)-1)
 
      else:
-         if chose.isdigit():
-           Console().print(f"[red]this number {chose} is out of range ! [/red]")
+         if chose__.isdigit():
+           Console().print(f"[red]this number {chose__} is out of range ! [/red]")
          else:
-            Console().print("[red]please enter a number ![/red]")
+           Console().print("[red]please enter a number ![/red]")
+
+
+while True:
+ Console().print("""
+[cyan]1---> add crypto (monnaie)
+2---> show list of cryptos
+3---> edit crypto
+4---> delete crypto[/cyan]
+""") 
+ y=input("---> ")
+ if y=="1":
+  input_crypto(list_crypto)
+
+ elif y=="2" and list_crypto:
+    show_list(list_crypto)
+
+ elif y=="3" and list_crypto:
+     chose=input("enter the number of crypto you want to edit : ").strip()
+     del_dit(chose,edit_list)
+ 
+ elif y=="4" and list_crypto:
+     chose_2=input("type the number of the item you want yo delete : ").strip()
+     del_dit(chose_2,delete_crypto)
+
+ elif not list_crypto:
+     Console().print("[bold][black]list is empty ![/black][/bold]")
