@@ -271,6 +271,8 @@ def download_time():
     
     sys.stdout.write("\r                         \n")
 
+
+
 def show_hide(x):
     if x==0:
      Console().print("""
@@ -281,10 +283,36 @@ show / hide ---> menu
 3---> edit crypto
 4---> delete crypto
 5---> searching for crypto(monnaie)
+6---> list filter crypto
 [/cyan]""") 
      
     else:
         pass
+
+
+# filter crypto 
+def filter_list_crypto(x,list__):
+    bigger_than=list(filter(lambda b : b['price']>=x, list__))
+    smaller_than=list(filter(lambda s : s['price']<x, list__ ))
+    
+    if bigger_than :
+        Console().print(f"[underline]list of crypto(monnaie) than or equal to : [green]{x}[/green] ")
+        lists_1=list(sorted(bigger_than,key=lambda t : t['price']))
+        for  i in lists_1:
+            print('---> ',i)
+    
+    print('\n')
+    if smaller_than:
+        Console().print(f"[underline]list of crypto(monnaie) smaller than : [green]{x}[/green] ")
+        lists_2=list(sorted(smaller_than , key=lambda t: t['price'] , reverse=True))
+        for  i in lists_2:
+            print('---> ',i)
+    
+    if not bigger_than and not smaller_than:
+        Console().print("[red on black]there is no listing[red on black]")
+
+
+
 
 sh=0
 while True:
@@ -316,6 +344,15 @@ while True:
      else:
          Console().print("[red]please chose [bold en purple]'1'[/bold en purple] or [bold en purple]'2'[/bold en purple] [/red]")
   
+
+ elif y=="6":
+    number=input("enter price to filer the list : ").strip()
+    if verification_digits(number):
+        filter_list_crypto(float(number),list_crypto)
+    else:
+        Console().print(f"[bold on red]you did not write a number , please try again..[bold on red]")
+
+
  elif y.lower()=="show":
      sh=0
  
