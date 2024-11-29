@@ -1,27 +1,36 @@
 import time
 import sys
+from rich.console import Console
 
-def moving_slash():
-    slashes = ['-','/','|','\\']  
-    duration = 10  
-    start_time = time.time() 
 
-    i = 0 
+GREEN = "\033[32m"
+RESET = "\033[0m"  
+RED = "\033[31m"
 
+
+def growing_bars():
+    duration = 6  
+    start_time = time.time()  
+
+    bars = []
+    pourccentage=0
     while True:
-        elapsed_time = time.time() - start_time  
-        if elapsed_time > duration:  
+      if pourccentage <=60:
+        speed=0.3
+      else:
+        speed=0.1
+      elapsed_time = time.time() - start_time  
+      # porcentage=(elapsed_time/duration)*100//1
+      pourccentage+= 100/(duration/speed)
+      if elapsed_time > duration:  
             break
+
+      bars.append('|')  
+      sys.stdout.write(f'\r[{RED}{"".join(bars)}{RESET}] [{GREEN}{pourccentage:.0f}%{RESET}]')  
+      sys.stdout.flush()  
         
-        sys.stdout.write(f"\rplease wait {slashes[i]}") 
-        sys.stdout.flush() 
-        time.sleep(0.8)  
+      time.sleep(speed)
+      
+           
 
-        i += 1
-        if i >= len(slashes): 
-            i = 0
-
-    sys.stdout.write("\r                \n") 
-
-
-moving_slash()
+growing_bars()

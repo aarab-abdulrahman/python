@@ -252,24 +252,34 @@ def searching_for_crypto(list__,name_or_symbole,inp):
 
 #download
 def download_time():
-    items=['-','/','|','\\']
-    duration=6
-    start=time.time()
-    i=0
+    GREEN = "\033[32m"
+    RESET = "\033[0m"  
+    RED = "\033[31m"
 
+    duration = 6  
+    start_time = time.time()  
+
+    bars = []
+    pourccentage=0
     while True:
-        elapsed_time=time.time()-start
-        if elapsed_time >duration:
+      if pourccentage <=60:
+        speed=0.3
+      else:
+        speed=0.1
+      elapsed_time = time.time() - start_time  
+      # porcentage=(elapsed_time/duration)*100//1
+      pourccentage+= 100/(duration/speed)
+      if elapsed_time > duration:  
             break
-        sys.stdout.write(f"\rplease white ({items[i]})")
-        sys.stdout.flush()
-        time.sleep(0.7)
 
-        i+=1
-        if i >= 4:
-            i=0
+      bars.append('|')  
+      sys.stdout.write(f'\r[{RED}{"".join(bars)}{RESET}] [{GREEN}{pourccentage:.0f}%{RESET}]')  
+      sys.stdout.flush()  
+        
+      time.sleep(speed)
+      
     
-    sys.stdout.write("\r                         \n")
+    sys.stdout.write('\r                                                   \n')
 
 
 
@@ -318,7 +328,7 @@ sh=0
 while True:
  show_hide(sh)
 
- y=input("---> ")
+ y=input("---> ").strip()
  if y=="1":
   input_crypto(list_crypto)
 
