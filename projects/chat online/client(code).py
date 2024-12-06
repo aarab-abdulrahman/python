@@ -2,7 +2,7 @@ import socket
 import threading
 import re
 
-HOST = '192.168.x.x'
+HOST = '192.168.101.139'
 PORT = 12345
 
 def is_valid_name(name):
