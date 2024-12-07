@@ -1,17 +1,17 @@
 import tkinter 
 from tkinter import messagebox
-from rich.console import Console
+from function_tk import check_number_flouat
 
 
 def  double_N():
     user_input=text_1.get()
     output_area.delete('1.0',tkinter.END)
 
-    if user_input.replace('.','').isdigit() and user_input.count('.')<=1:
+    if check_number_flouat(user_input):
         user_input=float(user_input)*2
         output_area.insert(tkinter.END,user_input)
     else:
-        Console().messagebox.showwarning('error',f'please type a correct number not [red]{user_input}[/red]')        
+        messagebox.showwarning('error',f'please type a correct number not {user_input}')        
     
 
 
