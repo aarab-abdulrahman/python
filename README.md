@@ -1,9 +1,9 @@
 # Used Libraries 
-### rich:
+### rich
 ```python
 pip install rich
  ```
-### PIL / Pillow:
+### PIL / Pillow
 
 ```python
 pip install pillow
