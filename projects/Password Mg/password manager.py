@@ -1,9 +1,10 @@
 import tkinter 
 import sqlite3
 from tkinter import messagebox
-from ttkbootstrap import ttk
+from ttkbootstrap import ttk , style , Label
 import ttkbootstrap as tb
 from PIL import Image, ImageTk
+import json
 
 
 def creat_datab():
@@ -36,7 +37,13 @@ def save_password():
                        (url, username, password))
         connect.commit()
         messagebox.showinfo('Success', 'Password saved successfully!')
-
+         
+        if button_states['button2']==True:
+            entry_url.delete(0,tkinter.END)
+            entry_username.delete(0,tkinter.END)
+            entry_password.delete(0,tkinter.END)   
+        else:
+            pass
     connect.close()
 
 
@@ -77,6 +84,65 @@ def show_page(page):
     pages[page].pack(fill="both", expand=True)
 
 
+# ______________________page2__________________
+
+
+def toggle_button(buttonx_name):
+    global button_states
+    if button_states[buttonx_name]:
+        button_states[buttonx_name]=False
+        save_setting()
+        return True
+    else:
+        button_states[buttonx_name]=True
+        save_setting()
+        return False 
+
+def off_on_button1(button_name,txt,x,entry1,entry2,style):
+    button_name.config(text=txt,bootstyle=style)
+    entry1.config(show=x)
+    entry2.config(show=x)
+
+def button1_execut():
+    if toggle_button('button1'):
+        off_on_button1(button1,'OFF',"",entry_url,entry_username,"danger")
+    else:
+        off_on_button1(button1,'ON',"*",entry_url,entry_username,"success")
+
+def button2_execut():
+    if toggle_button('button2'):
+        button2.config(text="OFF",bootstyle="danger")
+    else:
+        button2.config(text="ON",bootstyle="success")
+
+    
+    
+# _________json___________
+
+SETTINGS_FILE="settings.json"
+def save_setting():
+    global button_states     
+    with open(SETTINGS_FILE,mode="w") as file:
+        json.dump(button_states,file)
+
+def load_settings():
+    global button_states
+    try:
+        with open (SETTINGS_FILE,mode="r") as file:
+            button_states=json.load(file)
+    except:
+        pass
+
+def on_close():
+    save_setting()
+    root.destroy()
+
+button_states={
+    'button1':False,
+    'button2':False,
+}
+load_settings()
+
 # Main application
 root = tb.Window(themename="darkly")
 root.title('Password Manager')
@@ -95,7 +161,7 @@ navbar_frame.pack(side="top", fill="x")
 
 btn_page1 = ttk.Button(
     navbar_frame,
-    text="Page 1",
+    text="Home",
     command=lambda: show_page("page1"),
     bootstyle="danger-link"
 )
@@ -103,7 +169,7 @@ btn_page1.pack(side="left", padx=10, pady=5)
 
 btn_page2 = ttk.Button(
     navbar_frame,
-    text="Page 2",
+    text="Settings",
     command=lambda: show_page("page2"),
     bootstyle="success-link"
 )
@@ -150,6 +216,10 @@ entry_password = ttk.Entry(
     page1,
     width=30,
     bootstyle="danger",
+    # highlightthickness=2,
+    # highlightbackground="#eb0722",
+    # highlightcolor="#57eb07"
+    
 )
 entry_password.grid(row=5, column=2)
 
@@ -179,12 +249,76 @@ check1 = ttk.Checkbutton(
 )
 check1.place(x=250, y=153)
 
-# Page 2 (Settings or Additional Features)
+# Page 2 (Settings )
 page2 = ttk.Frame(root,bootstyle="cyborg")
 pages['page2'] = page2
-ttk.Label(page2, text="Page 2 - Settings or Additional Features").pack(pady=10)
+# ttk.Label(page2, text="Page 2 - Settings or Additional Features").pack(pady=10)
 
-# Show the default page
+
+label_noothing=ttk.Label(
+    page2,
+    text=""
+)
+label_noothing.grid(row=0,column=2,padx=160)
+
+# ______________________________
+
+label1=Label(
+    page2,
+    text="Hide text",
+    # background="#ffcccc",  
+    foreground="white",  
+    font=12
+)
+label1.grid(row=1,column=2)
+
+
+
+button1=ttk.Button(
+    page2,
+    text="OFF",
+    command=button1_execut,
+    bootstyle='danger',
+)
+
+if button_states['button1']:
+  off_on_button1(button1,'ON',"*",entry_url,entry_username,"success")
+
+
+button1.grid(row=1,column=3)
+
+# ______________________________
+label2=Label(
+    page2,
+    text="Delete text (after completion)",
+    font=12
+)
+label2.grid(row=2,column=2,pady=25)
+
+button2=ttk.Button(
+    page2,
+    text="OFF",
+    command=button2_execut,
+    bootstyle='danger',
+)
+if button_states['button2']:
+    button2.config(text="ON",bootstyle="success")
+
+button2.grid(row=2,column=3)
+
+
+# _____________
+frameh=ttk.Frame(page2,height=1,style="light")
+framev=ttk.Frame(page2,width=1,style="light")
+# _______________
+fh1=frameh
+fv2=framev
+fh1.place(relwidth=1,y=60)
+fv2.place(relheight=1,x=300)
+
+
+# Show the default page__
 show_page('page1')
 
+root.protocol("WM_DELETE_WINDOW",on_close)
 root.mainloop()
