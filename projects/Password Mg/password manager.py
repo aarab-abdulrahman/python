@@ -210,7 +210,7 @@ label_password = ttk.Label(
     page1,
     text="Password",
 )
-label_password.grid(row=4, column=2, pady=10)
+label_password.place(x=180, y=153)
 
 entry_password = ttk.Entry(
     page1,
@@ -221,7 +221,7 @@ entry_password = ttk.Entry(
     # highlightcolor="#57eb07"
     
 )
-entry_password.grid(row=5, column=2)
+entry_password.grid(row=5, column=2,pady=50)
 
 save_button = ttk.Button(
     page1,
@@ -247,7 +247,7 @@ check1 = ttk.Checkbutton(
     offvalue=0,
     command=checker,
 )
-check1.place(x=250, y=153)
+check1.place(x=245, y=155)
 
 # Page 2 (Settings )
 page2 = ttk.Frame(root,bootstyle="cyborg")

@@ -8,4 +8,8 @@ pip install rich
 ```python
 pip install pillow
 ```
+### tkinter bootstrap
 
+```python
+pip install ttkbootstrap
+```
