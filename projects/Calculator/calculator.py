@@ -1,7 +1,7 @@
 from ttkbootstrap import ttk , font ,Button
 import ttkbootstrap as tb
 from PIL import Image,ImageTk
-from tkinter import StringVar
+# from tkinter import StringVar
 import tkinter 
 
 
@@ -11,7 +11,7 @@ def on_click(x):
     current=label_display['text']
     if x=="=":
         try : 
-         label_display.config(text=str(eval(current)),fg='green')
+         label_display.config(text=str(eval(current)),fg='#09ff00')
         except:
             label_display.config(text="error",fg='red')
             error = not error
@@ -33,7 +33,7 @@ def on_click(x):
 def change_page(name_page):
     for frame in pages.values():
         frame.pack_forget()
-    # pages[name_page].grid(row=0, column=0, sticky="nsew") 
+    pages[name_page].pack(fill="both",expand=True)
 
 
 # __________________Main application_________________________
@@ -48,32 +48,29 @@ icon_photo=ImageTk.PhotoImage(icon_image)
 root.iconphoto(False,icon_photo)
 # ____________________________________________
  
+
+
 # navigation bar 
-nav_bar=ttk.Frame(root,bootstyle="superhero")
-# nav_bar.grid(sticky="ew",row=0,column=0)
+nav_bar=ttk.Frame(root,bootstyle="cyborg")
+nav_bar.pack(fill="x",side="top")
 
 pages={}
-page1=ttk.Frame(root,bootstyle="darkly")
-page2=ttk.Frame(root,bootstyle="superhero")
+page1=ttk.Frame(root,bootstyle="cyborg")
+page2=ttk.Frame(root,bootstyle="cyborg")
 pages['page1']=page1
 pages['page2']=page2
 
-btn_history=ttk.Button(
-    nav_bar,
-    text='history',
-    bootstyle="success-link",
-    command=change_page('page2')
-)
 
-# btn_history.grid(row=0,column=1)
 
 btn_home=ttk.Button(
     nav_bar,
     text="home",
     bootstyle="danger-link",
-    command=change_page('page1')
+    command=lambda : change_page('page1')
 )
-# btn_home.grid(row=0,column=2)
+# btn_home.pack(side='left')
+
+change_page('page1')
 
 # _____________________________
 
@@ -87,7 +84,7 @@ buttons={
 }
 for txt , rw , col in buttons :
     button=Button(
-       root,
+        page1,
         text=txt,
         command= lambda t=txt : on_click(t),
         padding=(45,20),
@@ -109,29 +106,46 @@ for txt , rw , col in buttons :
 
 
 margin_left=ttk.Label(
-    root,
-    text=""
+    page1,
+    text="",
+    
 )
 margin_left.grid(row=2,column=0,padx=17)
 
 margin_top=ttk.Label(
-    root,
-    text=""
+    page1,
+    text="",
 )
 margin_top.grid(row=0,column=1,pady=30)
 
 # result=StringVar()
 label_display=tkinter.Label(
-    root,
+    page1,
     width=40,
     # style="success",
     # textvariable=result
-    font=("Arial", 20)  
+    font=("Arial", 20)  ,
+    # height=2,
+    # bg="#303030",
 
 )
-label_display.place(y=30,x=-120)
+label_display.place(y=30,x=-110)
 
 
+# _______________page2________________
+
+icon_history=Image.open("history.png")
+icon_history=icon_history.resize((40,40))
+photo_history=ImageTk.PhotoImage(icon_history)
+
+btn_history=ttk.Button(
+    nav_bar,
+    image=photo_history,
+    bootstyle="success-link",
+    command=lambda : change_page('page2')
+)
+
+btn_history.pack(side='right')
 
 
 root.mainloop()
