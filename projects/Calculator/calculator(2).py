@@ -1,9 +1,49 @@
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 import tkinter
+from PIL import Image , ImageTk
+
 
 global_text=""
 restart=False
 continue_=False
+dark_mod=True
+
+
+
+        
+def change_background():
+    global dark_mod,button_imtt
+    if dark_mod:
+     canvas.itemconfig(canvas_rec,fill="#f0f0f0")
+     canvas.config(bg="#f0f0f0")
+     dark_mod=not dark_mod
+
+     button_20.config(image=button_image_21)
+     
+     for i in range (1,23):
+        if i==21:
+          pass
+        else:
+          buttons[f'button_{i}'].config(image=buttons_light_icon[f'button_{i}'])
+          entry_text.config(bg="#f0f0f0")
+          result_final.config(bg="#f0f0f0",fg="#121212")
+     
+
+    else:
+     canvas.itemconfig(canvas_rec,fill="#121212")
+     canvas.config(bg="#121212")
+     dark_mod=not dark_mod
+
+     for i in range (1,23):
+        if i==21:
+          pass
+        else:
+          buttons[f'button_{i}'].config(image=buttons_dark_icon[f'button_{i}'])
+          entry_text.config(bg="#121212")
+          result_final.config(bg="#121212",fg="white")
+         
+    
+
 
 def reset():
     global global_text ,restart,continue_
@@ -46,14 +86,22 @@ def on_click(value):
         entry_text.config(text=new_text)
 
     else: 
-        print(global_text)
-    print(global_text)
+        pass
+
 
 
 window = Tk()
-
 window.geometry("301x520")
 window.configure(bg = "#121212")
+window.title('Calculator')
+
+icon_image=Image.open("calculator_35118.ico")
+icon_photo=ImageTk.PhotoImage(icon_image)
+
+window.iconphoto(False,icon_photo)
+
+
+button_imtt = PhotoImage(file="light_icon/button_1.png")
 
 
 canvas = Canvas(
@@ -67,7 +115,8 @@ canvas = Canvas(
 )
 
 canvas.place(x = 0, y = 0)
-canvas.create_rectangle(
+
+canvas_rec=canvas.create_rectangle(
     0.0,
     0.0,
     300.0,
@@ -77,6 +126,8 @@ canvas.create_rectangle(
 
 button_image_1 = PhotoImage(
     file="button_1.png")
+
+
 button_1 = Button(
     image=button_image_1,
     borderwidth=0,
@@ -385,7 +436,7 @@ button_20 = Button(
     image=button_image_20,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_20 clicked"),
+    command=lambda: change_background(),
     relief="flat"
 )
 button_20.place(
@@ -397,13 +448,13 @@ button_20.place(
 
 button_image_21 = PhotoImage(
     file="button_21.png")
-button_21 = Button(
-    image=button_image_21,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_21 clicked"),
-    relief="flat"
-)
+# button_21 = Button(
+#     image=button_image_21,
+#     borderwidth=0,
+#     highlightthickness=0,
+#     command=lambda: print("button_21 clicked"),
+#     relief="flat"
+# )
 # button_21.place(
 #     x=135.0,
 #     y=35.0,
@@ -448,6 +499,84 @@ result_final=tkinter.Label(
     font=("Arial",28,"bold")
 )
 result_final.place(x=95,y=110)
+
+
+
+buttons = {
+    'button_1': button_1,
+    'button_2': button_2,
+    'button_3': button_3,
+    'button_4': button_4,
+    'button_5': button_5,
+    'button_6': button_6,
+    'button_7': button_7,
+    'button_8': button_8,
+    'button_9': button_9,
+    'button_10': button_10,
+    'button_11': button_11,
+    'button_12': button_12,
+    'button_13': button_13,
+    'button_14': button_14,
+    'button_15': button_15,
+    'button_16': button_16,
+    'button_17': button_17,
+    'button_18': button_18,
+    'button_19': button_19,
+    'button_20': button_20,
+    # 'button_21': button_21,
+    'button_22': button_22
+}
+
+buttons_light_icon = {
+    'button_1': PhotoImage(file="light_icon/button_1.png"),
+    'button_2': PhotoImage(file="light_icon/button_2.png"),
+    'button_3': PhotoImage(file="light_icon/button_3.png"),
+    'button_4': PhotoImage(file="light_icon/button_4.png"),
+    'button_5': PhotoImage(file="light_icon/button_5.png"),
+    'button_6': PhotoImage(file="light_icon/button_6.png"),
+    'button_7': PhotoImage(file="light_icon/button_7.png"),
+    'button_8': PhotoImage(file="light_icon/button_8.png"),
+    'button_9': PhotoImage(file="light_icon/button_9.png"),
+    'button_10': PhotoImage(file="light_icon/button_10.png"),
+    'button_11': PhotoImage(file="light_icon/button_11.png"),
+    'button_12': PhotoImage(file="light_icon/button_12.png"),
+    'button_13': PhotoImage(file="light_icon/button_13.png"),
+    'button_14': PhotoImage(file="light_icon/button_14.png"),
+    'button_15': PhotoImage(file="light_icon/button_15.png"),
+    'button_16': PhotoImage(file="light_icon/button_16.png"),
+    'button_17': PhotoImage(file="light_icon/button_17.png"),
+    'button_18': PhotoImage(file="light_icon/button_18.png"),
+    'button_19': PhotoImage(file="light_icon/button_19.png"),
+    'button_20': PhotoImage(file="light_icon/button_20.png"),
+    # 'button_21': PhotoImage(file="light_icon/button_21.png"),
+    'button_22': PhotoImage(file="light_icon/button_22.png"),
+}
+buttons_dark_icon = {
+    'button_1': PhotoImage(file="button_1.png"),
+    'button_2': PhotoImage(file="button_2.png"),
+    'button_3': PhotoImage(file="button_3.png"),
+    'button_4': PhotoImage(file="button_4.png"),
+    'button_5': PhotoImage(file="button_5.png"),
+    'button_6': PhotoImage(file="button_6.png"),
+    'button_7': PhotoImage(file="button_7.png"),
+    'button_8': PhotoImage(file="button_8.png"),
+    'button_9': PhotoImage(file="button_9.png"),
+    'button_10': PhotoImage(file="button_10.png"),
+    'button_11': PhotoImage(file="button_11.png"),
+    'button_12': PhotoImage(file="button_12.png"),
+    'button_13': PhotoImage(file="button_13.png"),
+    'button_14': PhotoImage(file="button_14.png"),
+    'button_15': PhotoImage(file="button_15.png"),
+    'button_16': PhotoImage(file="button_16.png"),
+    'button_17': PhotoImage(file="button_17.png"),
+    'button_18': PhotoImage(file="button_18.png"),
+    'button_19': PhotoImage(file="button_19.png"),
+    'button_20': PhotoImage(file="button_20.png"),
+    # 'button_21': PhotoImage(file="button_21.png"),
+    'button_22': PhotoImage(file="button_22.png"),
+}
+
+
 
 window.resizable(False, False)
 window.mainloop()
