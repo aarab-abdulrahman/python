@@ -1,25 +1,52 @@
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 import tkinter
-global_text=""
-def on_click(value):
-    global global_text
-    current=entry_text['text']
 
-    global_text+=current
+global_text=""
+restart=False
+continue_=False
+
+def reset():
+    global global_text ,restart,continue_
+
+    if restart:
+        result_final.config(text='',fg="white")
+        entry_text.config(text="")
+        restart=False
+        global_text=""
+
+    if continue_:
+        result_final.config(text='')
+
+
+def on_click(value):
+    global global_text ,restart,continue_
+    reset()
 
     wrap=0
-    if len(current)>13:
+    width=12
+    if len(global_text)>width:
         wrap+=11
+        width+=12
 
     if value=="=":
-        pass
-    elif value=="+":
-        pass
-    else:
-        current=(current+value)
-        new_text=current[wrap:]
+        try:
+            continue_=True
+            result_final.config(text=f"= {str(eval(global_text))}")
+        except:
+            restart=True
+            result_final.config(text="error",fg="red")
+
+    elif value=="AC":
+        global_text=""
+        entry_text.config(text="")
+
+    elif value in  ["0","1","2","3","4","5","6","7","8","9","+","/","-","%","*"]:
+        global_text+=value
+        new_text=global_text[wrap:]
         entry_text.config(text=new_text)
 
+    else: 
+        print(global_text)
     print(global_text)
 
 
@@ -86,7 +113,7 @@ button_3 = Button(
     image=button_image_3,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_3 clicked"),
+    command=lambda: on_click('*'),
     relief="flat"
 )
 button_3.place(
@@ -102,7 +129,7 @@ button_4 = Button(
     image=button_image_4,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_4 clicked"),
+    command=lambda: on_click('/'),
     relief="flat"
 )
 button_4.place(
@@ -118,7 +145,7 @@ button_5 = Button(
     image=button_image_5,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_5 clicked"),
+    command=lambda: on_click('%'),
     relief="flat"
 )
 button_5.place(
@@ -134,7 +161,7 @@ button_6 = Button(
     image=button_image_6,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_6 clicked"),
+    command=lambda: on_click('+/-'),
     relief="flat"
 )
 button_6.place(
@@ -150,7 +177,7 @@ button_7 = Button(
     image=button_image_7,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_7 clicked"),
+    command=lambda: on_click('AC'),
     relief="flat"
 )
 button_7.place(
@@ -166,7 +193,7 @@ button_8 = Button(
     image=button_image_8,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_8 clicked"),
+    command=lambda: on_click('9'),
     relief="flat"
 )
 button_8.place(
@@ -182,7 +209,7 @@ button_9 = Button(
     image=button_image_9,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_9 clicked"),
+    command=lambda: on_click('8'),
     relief="flat"
 )
 button_9.place(
@@ -198,7 +225,7 @@ button_10 = Button(
     image=button_image_10,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_10 clicked"),
+    command=lambda: on_click('7'),
     relief="flat"
 )
 button_10.place(
@@ -214,7 +241,7 @@ button_11 = Button(
     image=button_image_11,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_11 clicked"),
+    command=lambda: on_click('6'),
     relief="flat"
 )
 button_11.place(
@@ -230,7 +257,7 @@ button_12 = Button(
     image=button_image_12,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_12 clicked"),
+    command=lambda: on_click('5'),
     relief="flat"
 )
 button_12.place(
@@ -246,7 +273,7 @@ button_13 = Button(
     image=button_image_13,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_13 clicked"),
+    command=lambda: on_click('4'),
     relief="flat"
 )
 button_13.place(
@@ -262,7 +289,7 @@ button_14 = Button(
     image=button_image_14,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_14 clicked"),
+    command=lambda: on_click('3'),
     relief="flat"
 )
 button_14.place(
@@ -278,7 +305,7 @@ button_15 = Button(
     image=button_image_15,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_15 clicked"),
+    command=lambda: on_click('2'),
     relief="flat"
 )
 button_15.place(
@@ -294,7 +321,7 @@ button_16 = Button(
     image=button_image_16,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_16 clicked"),
+    command=lambda: on_click('1'),
     relief="flat"
 )
 button_16.place(
@@ -310,7 +337,7 @@ button_17 = Button(
     image=button_image_17,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_17 clicked"),
+    command=lambda: on_click('0'),
     relief="flat"
 )
 button_17.place(
@@ -326,7 +353,7 @@ button_18 = Button(
     image=button_image_18,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_18 clicked"),
+    command=lambda: on_click(','),
     relief="flat"
 )
 button_18.place(
@@ -342,7 +369,7 @@ button_19 = Button(
     image=button_image_19,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_19 clicked"),
+    command=lambda: on_click('+'),
     relief="flat"
 )
 button_19.place(
@@ -408,10 +435,19 @@ entry_text=tkinter.Label(
     window,
     text="",
     bg="#121212",
-    fg="white",
-    font=("Arial",24)
+    fg="gray",
+    font=("Arial",18,"bold")
 )
-entry_text.place(x=110,y=86)
+entry_text.place(x=95,y=83)
+
+result_final=tkinter.Label(
+    window,
+    text="",
+    bg="#121212",
+    fg="white",
+    font=("Arial",28,"bold")
+)
+result_final.place(x=95,y=110)
 
 window.resizable(False, False)
 window.mainloop()
