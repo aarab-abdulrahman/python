@@ -13,3 +13,17 @@ pip install pillow
 ```python
 pip install ttkbootstrap
 ```
+
+### sqlite3
+
+### tkinter
+
+### subprocess
+
+### os
+
+### time
+
+### datetime
+
+

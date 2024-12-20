@@ -1,0 +1,15 @@
+creta data (execute) ----> '''CREATE TABLE IF NOT EXISTS <name table> (
+			 <nmae_col> INTEGER / TEXT / REAL /  +- PRIMARY KEY,
+			 )
+	       ''' + .commit()
+
+insert into data (execute) ----> "INSERT INTO <name table> (<name_col>,...) VALUES (?,..)",(<name var>,..)
+
+	       
+delete row from data (execute) ----> 'DELETE FROM <name table> WHERE <name_col> = ?',(<var_col>,)
+
+select all rows from table (execute) ---> a='SELECT * FROM <name table>'
+					
+					  b=a.fetchall()
+			
+
