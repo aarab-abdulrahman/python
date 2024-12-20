@@ -81,8 +81,8 @@ class Home_Store:
         # self.tree=ttk.Treeview(self.right_frame,columns=self.columns,show='headings')
 
         style = ttk.Style()
-        style.configure("Treeview", background="#1f7a8c", foreground="black", rowheight=30, fieldbackground="#bfdbf7")
-        style.configure("Treeview.Heading", background="#022b3a", foreground="white", font=('Arial', 12, 'bold'),)
+        style.configure("Treeview", background="#1f7a8c", foreground="black", rowheight=30, fieldbackground="#14acc9")
+        style.configure("Treeview.Heading", background="#14acc9", foreground="#14acc9", font=('Arial', 15, 'bold'),)
         style.map('Treeview', background=[('selected', '#0484d4')])
 
         self.tree = ttk.Treeview(self.right_frame, columns=self.columns, show='headings', style="Treeview")
